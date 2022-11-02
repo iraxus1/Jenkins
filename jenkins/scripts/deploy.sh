@@ -6,7 +6,7 @@ echo "Removing network test-net if it exists..."
 docker network rm test-net || true
 
 echo "Deploying app ($registry:$BUILD_NUMBER)..."
-docker network create test-net
+docker network create test1-net
 
 docker container run -d \
     --name api \
@@ -23,11 +23,11 @@ curl --fail --silent --show-error \
 EOF
 
 docker container run --rm \
-    --net test-net \
+    --net test1-net \
     node:alpine sh -c "$wait_for"
 
 echo "Smoke tests..."
 docker container run --name tester \
     --rm \
-    --net test-net \
+    --net test1-net \
     mmiotkug/node-curl sh -c "curl api:3000"
