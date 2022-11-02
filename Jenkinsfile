@@ -3,6 +3,7 @@ pipeline {
 //       registry = "iraxus/jenkins-docker-test"
 //       DOCKERHUB_CREDENTIALS = credentials('docker-login-pwd')
 //   }
+//
   agent {
       docker {
           image 'mmiotkug/node-curl'
